@@ -16,4 +16,8 @@ export class CategoryService{
     updateCategory(name:string,id:number){
         return this.categoryClient.updateCategory(id,name)
     }
+
+    deleteCategory(id:number){
+        return this.categoryClient.deleteCategory(id)
+    }
 }

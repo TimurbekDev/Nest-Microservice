@@ -13,7 +13,6 @@ import { SequelizeModule } from '@nestjs/sequelize';
       database:'myblog',
       synchronize:true,
       autoLoadModels:true,
-      sync:{force:true}
     }),
     CategoryModule
   ],

@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Patch, Post } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, Patch, Post } from "@nestjs/common";
 import { CategoryService } from "./category.service";
 import { ApiTags } from "@nestjs/swagger";
 import { CreateCategoryDto } from "./dtos";
@@ -22,5 +22,10 @@ export class CategoryController{
     @Patch(':id')
     updateCategory(@Param('id') id:number,@Body() updateCategoryDto:CreateCategoryDto){
         return this.categoryService.updateCategory(updateCategoryDto.name,id)
+    }
+
+    @Delete(':id')
+    deleteCategory(@Param('id') id:number){
+        return this.categoryService.deleteCategory(id)
     }
 }

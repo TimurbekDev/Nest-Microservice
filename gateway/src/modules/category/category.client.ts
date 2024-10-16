@@ -32,4 +32,8 @@ export class CategoryClient implements OnModuleInit{
             name
         })
     }
+
+    deleteCategory(id:number){
+        return this.client.send('deleteCategory',id)
+    }
 }

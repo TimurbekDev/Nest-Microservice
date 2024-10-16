@@ -29,6 +29,7 @@ export class CategoryController {
     return this.categoryService.update(updateCategoryDto);
   }
 
+  @MessagePattern('deleteCategory')
   remove(@Payload() id: number) {
     return this.categoryService.remove(id);
   }
