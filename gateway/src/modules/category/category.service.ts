@@ -13,6 +13,10 @@ export class CategoryService{
         return this.categoryClient.createCategory(name)
     }
 
+    getCategoryById(id:number){
+        return this.categoryClient.getCategoryById(id)
+    }
+
     updateCategory(name:string,id:number){
         return this.categoryClient.updateCategory(id,name)
     }

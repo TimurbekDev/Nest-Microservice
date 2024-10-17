@@ -17,8 +17,8 @@ export class CreateProductDto {
   @IsNumber()
   count: number;
 
-  @ApiProperty({ description: 'Type or category of the product', example: 'Electronics' })
+  @ApiProperty({ description: 'Type or category of the product', example: 1 })
   @IsNotEmpty()
-  @IsString()
-  category_id: string;
+  @IsNumber()
+  category_id: number;
 }

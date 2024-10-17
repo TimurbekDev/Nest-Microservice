@@ -13,5 +13,5 @@ export class UpdateProductDto extends PartialType(CreateProductDto) {
   count?: number;
 
   @ApiPropertyOptional({ description: 'Type or category of the product', example: 'Electronics' })
-  category_id?: string;
+  category_id?: number;
 }

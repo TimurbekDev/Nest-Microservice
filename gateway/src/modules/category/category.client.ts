@@ -14,12 +14,16 @@ export class CategoryClient implements OnModuleInit{
         })
     }
 
-    async  onModuleInit(){
+    async onModuleInit(){
         await this.client.connect()
     }
 
     getAllCategories(data:any){
         return this.client.send('getAllCategories',data)
+    }
+
+    getCategoryById(id:number){
+        return this.client.send('getCategoryById',id)
     }
 
     createCategory(name:string){

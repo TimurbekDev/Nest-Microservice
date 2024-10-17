@@ -13,14 +13,21 @@ export class CategoryController{
         return this.categoryService.getAllCategories();
     }
 
+    @Get(':id')
+    getCategoryById(@Param('id') id:number){
+        return this.categoryService.getCategoryById(id);
+    }
+
     @Post()
     createCategory(@Body() createCategoryDto:CreateCategoryDto){
         return this.categoryService.createCategory(createCategoryDto.name)
     }
 
-
     @Patch(':id')
-    updateCategory(@Param('id') id:number,@Body() updateCategoryDto:CreateCategoryDto){
+    updateCategory(
+        @Param('id') id:number,
+        @Body() updateCategoryDto:CreateCategoryDto
+    ){
         return this.categoryService.updateCategory(updateCategoryDto.name,id)
     }
 

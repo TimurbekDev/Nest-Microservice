@@ -1,11 +1,15 @@
 import { ClientProxyFactory, Transport, ClientProxy } from '@nestjs/microservices';
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Inject, Injectable, NotFoundException } from '@nestjs/common';
+import { CategoryService } from '../category';
+import { CreateProductDto } from './dto/create-product.dto';
 
 @Injectable()
 export class ProductClientService {
   private client: ClientProxy;
 
-  constructor() {
+  constructor(
+    @Inject(CategoryService) private categoryService:CategoryService
+  ) {
     this.client = ClientProxyFactory.create({
       transport: Transport.TCP,
       options: {
@@ -23,8 +27,17 @@ export class ProductClientService {
     return this.client.send('get_product', id);
   }
 
-  createProduct(product: any) {
-    return this.client.send('create_product', product);
+  createProduct(product: CreateProductDto) {
+    try {
+      this.categoryService.getCategoryById(product.category_id).subscribe(res=>{
+        if(!res)
+          throw new BadRequestException('category not found')
+      });
+    
+      return this.client.send('create_product', product);
+    } catch (error) {
+      console.log(error.message);
+    }
   }
 
   updateProduct(id: number, product: any) {
