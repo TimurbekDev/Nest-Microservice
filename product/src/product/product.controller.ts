@@ -29,7 +29,7 @@ export class ProductController {
   }
 
   @MessagePattern('delete_product')
-  async deleteProduct(@Payload() id: number): Promise<void> {
+  async deleteProduct(@Payload() id: number){
     return this.productService.delete(id);
   }
 }
